@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { headers } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +15,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const csrfToken = headers().get('X-CSRF-Token');
+  console.log(`3. layout: ${csrfToken}`);
+
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
